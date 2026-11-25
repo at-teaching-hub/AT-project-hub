@@ -1,4 +1,7 @@
-# Codex Project Hub
+# AT Project Hub
+
+- GitHub: <https://github.com/at-teaching-hub/AT-project-hub>
+- GitHub Pages: <https://at-teaching-hub.github.io/AT-project-hub/>
 
 把歷次製作的應用程式、HTML、模擬器、物聯網程式、簡報、3D 資產與 Codex Skill 集中在一個可修訂、可搜尋及可公開展示的倉庫。
 
