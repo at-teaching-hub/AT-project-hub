@@ -1,0 +1,389 @@
+#pragma once
+
+static const char WEB_PAGE_HTML[] PROGMEM = R"rawliteral(
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>十八鄉鄉事委員會公益社中學30周年校慶杯機械人奪寳奇兵桃戰賽</title>
+  <style>
+    :root {
+      --bg: #050a12;
+      --panel: rgba(10, 22, 36, 0.82);
+      --line: rgba(104, 240, 255, 0.22);
+      --line-strong: rgba(104, 240, 255, 0.62);
+      --cyan: #68f0ff;
+      --mint: #7dffd3;
+      --text: #e9faff;
+      --muted: #7792a6;
+      --warning: #ffc968;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; }
+    body {
+      color: var(--text);
+      font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
+      background:
+        linear-gradient(rgba(104,240,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(104,240,255,.035) 1px, transparent 1px),
+        radial-gradient(circle at 15% 12%, rgba(27, 132, 171, .18), transparent 32rem),
+        radial-gradient(circle at 88% 78%, rgba(33, 104, 145, .12), transparent 28rem),
+        var(--bg);
+      background-size: 40px 40px, 40px 40px, auto, auto, auto;
+      overflow-x: hidden;
+    }
+    .page {
+      width: min(1240px, 94vw);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 30px 0 28px;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      padding: 8px 0 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .kicker {
+      color: var(--cyan);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: .72rem;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 12px 0 0;
+      max-width: 940px;
+      font-size: clamp(1.75rem, 4vw, 3.7rem);
+      line-height: 1.18;
+      letter-spacing: .02em;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+    h1 span { color: var(--cyan); }
+    .system-label {
+      min-width: 176px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      background: rgba(5, 16, 28, .62);
+      color: var(--muted);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: .7rem;
+      line-height: 1.7;
+      letter-spacing: .12em;
+      text-align: right;
+    }
+    .system-label strong { color: var(--mint); font-weight: 600; }
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 20px;
+      padding: 28px 0 18px;
+    }
+    .panel {
+      position: relative;
+      min-height: 390px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: 0 22px 60px rgba(0,0,0,.24), inset 0 1px rgba(255,255,255,.03);
+      padding: 26px;
+      overflow: hidden;
+    }
+    .panel::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 24px;
+      width: 84px;
+      height: 2px;
+      background: var(--cyan);
+      box-shadow: 0 0 18px rgba(104,240,255,.65);
+    }
+    .eyebrow {
+      color: var(--muted);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .route-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+    }
+    .route-letter {
+      margin: 24px 0 12px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: clamp(8.5rem, 19vw, 15rem);
+      line-height: .88;
+      font-weight: 700;
+      letter-spacing: -.08em;
+      color: var(--cyan);
+      text-shadow: 0 0 34px rgba(104,240,255,.22);
+      transition: opacity .22s ease, transform .22s ease;
+    }
+    .route-letter.pop { transform: scale(1.06); }
+    .route-status {
+      min-height: 30px;
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: .12em;
+      transition: opacity .25s ease;
+    }
+    .timer-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    .timer {
+      margin: 30px 0 24px;
+      color: var(--text);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 1;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -.055em;
+    }
+    body.running .timer { color: var(--cyan); text-shadow: 0 0 26px rgba(104,240,255,.2); }
+    body.stopped .timer { color: var(--mint); }
+    .connection {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      color: var(--muted);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: .74rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4d5b68;
+    }
+    .dot.online { background: var(--mint); box-shadow: 0 0 0 4px rgba(125,255,211,.1); }
+    .dot.running { background: var(--cyan); box-shadow: 0 0 0 4px rgba(104,240,255,.1); }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      padding: 4px 0 18px;
+    }
+    .control-button {
+      min-width: 180px;
+      padding: 14px 24px;
+      border: 1px solid var(--line-strong);
+      border-radius: 12px;
+      background: rgba(14, 38, 55, .68);
+      color: var(--text);
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: .1em;
+      cursor: pointer;
+      transition: transform .16s ease, background .16s ease, opacity .16s ease;
+    }
+    .control-button:hover:not(:disabled) { transform: translateY(-1px); background: rgba(31, 81, 105, .78); }
+    .control-button.stop { color: var(--cyan); }
+    .control-button.reset { color: var(--warning); border-color: rgba(255,201,104,.46); }
+    .control-button:disabled { opacity: .32; cursor: not-allowed; }
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .note {
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.55;
+      text-align: center;
+    }
+    .note strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--text);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: .75rem;
+      letter-spacing: .1em;
+    }
+    footer {
+      padding-top: 18px;
+      text-align: center;
+      color: rgba(119,146,166,.62);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: .66rem;
+      letter-spacing: .14em;
+    }
+    @media (max-width: 760px) {
+      header { grid-template-columns: 1fr; }
+      .system-label { text-align: left; min-width: 0; }
+      main { grid-template-columns: 1fr; }
+      .panel { min-height: 280px; padding: 20px; }
+      .route-letter { font-size: 8rem; }
+      .controls { flex-direction: column; align-items: stretch; }
+      .control-button { width: 100%; }
+      .notes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="waiting">
+  <div class="page">
+    <header>
+      <div>
+        <div class="kicker">SPHRC KUNG YIK SHE SEC. SCH. 30TH ANNIVERSARY · ROBOT ADVENTURE</div>
+        <h1>十八鄉鄉事委員會公益社中學<br /><span>30周年校慶杯機械人奪寳奇兵桃戰賽</span></h1>
+      </div>
+      <div class="system-label">
+        <div>AI ROUTE SYSTEM</div>
+        <div><strong id="systemState">STANDBY</strong></div>
+        <div>CHALLENGE CONTROL</div>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel route-panel">
+        <div class="eyebrow">ROUTE / 路線</div>
+        <div id="routeLetter" class="route-letter">—</div>
+        <div id="statusText" class="route-status">等待AI辦認路線</div>
+      </section>
+
+      <section class="panel timer-panel">
+        <div class="eyebrow">TIME / 計時</div>
+        <div id="timer" class="timer">0:00.00</div>
+        <div class="connection">
+          <span id="liveDot" class="dot"></span>
+          <span id="connectionText">系統連線中</span>
+        </div>
+      </section>
+    </main>
+
+    <section class="controls">
+      <button id="stopButton" class="control-button stop" onclick="stopTimer()">終止計時</button>
+      <button id="resetButton" class="control-button reset" onclick="resetSystem()">重設系統</button>
+    </section>
+
+    <section class="notes">
+      <div class="note"><strong>GPIO4 / GPIO17</strong>壓力感應停止</div>
+      <div class="note"><strong>GPIO18</strong>實體停止按鈕</div>
+      <div class="note"><strong>GPIO19</strong>實體重設按鈕</div>
+    </section>
+
+    <footer>SPHRC KUNG YIK SHE SEC. SCH. · 30TH ANNIVERSARY ROBOT CHALLENGE</footer>
+  </div>
+
+  <script>
+    const routeLetter = document.getElementById('routeLetter');
+    const timer = document.getElementById('timer');
+    const statusText = document.getElementById('statusText');
+    const connectionText = document.getElementById('connectionText');
+    const liveDot = document.getElementById('liveDot');
+    const systemState = document.getElementById('systemState');
+    const stopButton = document.getElementById('stopButton');
+
+    let currentState = 'waiting';
+    let route = '';
+    let baseElapsed = 0;
+    let finalMs = 0;
+    let syncedAt = performance.now();
+    let lastRoute = '';
+
+    function formatTime(ms) {
+      if (!Number.isFinite(ms) || ms < 0) ms = 0;
+      const minutes = Math.floor(ms / 60000);
+      const seconds = Math.floor((ms % 60000) / 1000);
+      const hundredths = Math.floor((ms % 1000) / 10);
+      return `${minutes}:${String(seconds).padStart(2, '0')}.${String(hundredths).padStart(2, '0')}`;
+    }
+
+    function renderTimer() {
+      let shown = 0;
+      if (currentState === 'running') shown = baseElapsed + (performance.now() - syncedAt);
+      if (currentState === 'stopped') shown = finalMs;
+      timer.textContent = formatTime(shown);
+    }
+
+    function updateView() {
+      document.body.className = currentState;
+      routeLetter.textContent = route || '—';
+      statusText.textContent = currentState === 'waiting' ? '等待AI辦認路線' : '';
+      stopButton.disabled = currentState !== 'running';
+
+      if (route && route !== lastRoute) {
+        routeLetter.classList.add('pop');
+        setTimeout(() => routeLetter.classList.remove('pop'), 220);
+      }
+      lastRoute = route;
+
+      if (currentState === 'running') {
+        liveDot.className = 'dot running';
+        systemState.textContent = 'TRACKING';
+      } else if (currentState === 'stopped') {
+        liveDot.className = 'dot online';
+        systemState.textContent = 'COMPLETE';
+      } else {
+        liveDot.className = 'dot online';
+        systemState.textContent = 'STANDBY';
+      }
+      renderTimer();
+    }
+
+    async function pollStatus() {
+      try {
+        const response = await fetch(`/status?t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error('status');
+        const data = await response.json();
+        currentState = data.state || 'waiting';
+        route = data.route || '';
+        baseElapsed = Number(data.elapsed || 0);
+        finalMs = Number(data.final || 0);
+        syncedAt = performance.now();
+        connectionText.textContent = '系統連線正常';
+        liveDot.classList.add('online');
+        updateView();
+      } catch (error) {
+        connectionText.textContent = '系統連線中斷';
+        liveDot.className = 'dot';
+      }
+    }
+
+    async function stopTimer() {
+      if (currentState !== 'running') return;
+      try {
+        await fetch('/stop', { method: 'POST' });
+        await pollStatus();
+      } catch (error) {
+        connectionText.textContent = '停止指令失敗';
+      }
+    }
+
+    async function resetSystem() {
+      try {
+        await fetch('/reset', { method: 'POST' });
+        await pollStatus();
+      } catch (error) {
+        connectionText.textContent = '重設指令失敗';
+      }
+    }
+
+    setInterval(renderTimer, 33);
+    setInterval(pollStatus, 250);
+    pollStatus();
+  </script>
+</body>
+</html>
+
+)rawliteral";
+

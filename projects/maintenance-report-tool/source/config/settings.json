@@ -1,0 +1,189 @@
+{
+  "version": "1.0",
+  "school_name": "",
+  "report_title": "維修工程統計報告",
+  "source": {
+    "sheet_name": "表單回應",
+    "sheet_candidates": [
+      "表單回應",
+      "表單回覆",
+      "回應",
+      "回應表",
+      "Form Responses 1",
+      "Sheet1"
+    ],
+    "header_row_hint": 1,
+    "csv_encodings": [
+      "utf-8-sig",
+      "utf-8",
+      "big5",
+      "cp950",
+      "gb18030"
+    ],
+    "column_map": {
+      "apply_date": [
+        "時間戳記",
+        "申請日期",
+        "申請時間",
+        "Timestamp"
+      ],
+      "requester": [
+        "電子郵件地址",
+        "電郵",
+        "申請人",
+        "Email"
+      ],
+      "expect_date": [
+        "期望完成日期"
+      ],
+      "location": [
+        "維修地點",
+        "地點",
+        "位置"
+      ],
+      "item": [
+        "維修項目",
+        "項目"
+      ],
+      "detail": [
+        "損壞情況",
+        "損壞描述",
+        "情況"
+      ],
+      "discipline": [
+        "是否涉及學生紀律問題"
+      ],
+      "staff": [
+        "跟進工程的員工",
+        "跟進維修人員",
+        "跟進人"
+      ],
+      "plan_date": [
+        "預計完成日期"
+      ],
+      "remark": [
+        "備註"
+      ],
+      "review_status": [
+        "審核狀態"
+      ],
+      "done_date": [
+        "維修完成日期",
+        "完成日期"
+      ],
+      "done_remark": [
+        "維修備註"
+      ],
+      "progress": [
+        "維修進行狀態",
+        "進行狀態"
+      ],
+      "eo_confirm": [
+        "EO維修完成確認"
+      ],
+      "applicant_confirm": [
+        "申請人維修完成確認"
+      ],
+      "ic_confirm": [
+        "IC維修完成確認"
+      ],
+      "monthly_log": [
+        "紀錄在每月報告",
+        "記錄在每月報告"
+      ],
+      "close_date": [
+        "結案日期"
+      ]
+    }
+  },
+  "periods": {
+    "quarterly": [
+      {
+        "name": "第一季（9–12月）",
+        "start_month": 9,
+        "end_month": 12
+      },
+      {
+        "name": "第二季（1–4月）",
+        "start_month": 1,
+        "end_month": 4
+      },
+      {
+        "name": "第三季（5–8月）",
+        "start_month": 5,
+        "end_month": 8
+      }
+    ],
+    "annual": {
+      "name": "全年（9月–翌年8月）",
+      "start_month": 9,
+      "end_month": 8
+    }
+  },
+  "thresholds": {
+    "overdue_days": 30,
+    "top_n": 10,
+    "repeat_cases_min": 2,
+    "partial_replace_min": 3,
+    "full_replace_min": 5,
+    "floor_share_alert": 0.25,
+    "room_alert_min": 3,
+    "grade_alert_min": 3,
+    "staff_load_alert": 10,
+    "advice_max_per_type": 6
+  },
+  "risk_keywords": {
+    "電力安全": [
+      "電",
+      "燒",
+      "火花",
+      "煙",
+      "燶",
+      "漏電"
+    ],
+    "漏水風險": [
+      "漏水",
+      "滲水",
+      "滴水",
+      "積水"
+    ],
+    "保安風險": [
+      "鎖",
+      "鎖匙",
+      "門",
+      "閘",
+      "密碼"
+    ],
+    "衛生風險": [
+      "霉",
+      "污",
+      "臭",
+      "蚊",
+      "蟲",
+      "鼠"
+    ],
+    "安全隱患": [
+      "鬆脫",
+      "脫落",
+      "爆",
+      "裂",
+      "跌",
+      "爛",
+      "斷",
+      "危險"
+    ]
+  },
+  "report": {
+    "include_sheets": [
+      "summary",
+      "category",
+      "cross",
+      "trend",
+      "advice",
+      "detail",
+      "unclassified"
+    ],
+    "chart_dpi": 150,
+    "top_rooms_in_chart": 10
+  }
+}

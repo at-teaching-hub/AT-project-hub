@@ -1,0 +1,1231 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四足拔河機械實驗室｜D&T 課前預備</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg: light-dark(#f4f1ea,#111512);
+  --panel: light-dark(#fffdf8,#1b211d);
+  --panel-2: light-dark(#f8f5ee,#202820);
+  --ink: light-dark(#17201c,#f2f6f1);
+  --muted: light-dark(#66716a,#aab6ad);
+  --line: light-dark(#d9ddd6,#39443c);
+  --accent: light-dark(#df6b2d,#ff9b58);
+  --accent-soft: light-dark(#f8e2d3,#4a2b1a);
+  --green: light-dark(#2e7d5b,#73d6a6);
+  --green-soft: light-dark(#dfeee7,#173729);
+  --blue: light-dark(#3c6f9d,#79b9ed);
+  --blue-soft: light-dark(#deebf5,#193142);
+  --red: light-dark(#ae3d3d,#ff8c8c);
+  --red-soft: light-dark(#f7dfdc,#442020);
+  --gold: light-dark(#b17018,#f0bd5c);
+  --shadow: 0 18px 50px rgba(20,28,22,.10);
+  --radius: 18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-width:320px;
+  background:
+    radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 32rem),
+    radial-gradient(circle at 95% 18%, color-mix(in srgb, var(--blue) 10%, transparent), transparent 28rem),
+    var(--bg);
+  color:var(--ink);
+  font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;
+  line-height:1.5;
+}
+button,input,select{font:inherit}
+button{color:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 52%, transparent);outline-offset:2px}
+.app{width:min(1240px,calc(100% - 28px));margin:0 auto;padding:24px 0 72px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;padding:20px 2px 22px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
+.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.05;letter-spacing:-.04em;margin:.2em 0 .3em}
+.hero p{max-width:720px;margin:0;color:var(--muted);font-size:16px}
+.hero-badge{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;max-width:360px}
+.pill,.tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 86%,transparent);border-radius:999px;padding:7px 11px;font-size:12px;color:var(--muted)}
+.pill strong{color:var(--ink)}
+.workbench{display:grid;grid-template-columns:365px minmax(0,1fr);gap:18px;align-items:start}
+.panel,.sheet,.duel-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.controls{overflow:hidden;position:sticky;top:14px}
+.control-head{padding:18px 18px 14px;border-bottom:1px solid var(--line)}
+.control-head h2{margin:0;font-size:18px}
+.control-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:6px;overflow:auto;padding:12px 12px 8px;scrollbar-width:thin}
+.tab{border:1px solid transparent;background:var(--panel-2);border-radius:11px;padding:8px 10px;white-space:nowrap;cursor:pointer;font-size:13px;font-weight:700;color:var(--muted)}
+.tab.active{background:var(--accent);color:light-dark(#fff,#16110d);border-color:color-mix(in srgb,var(--accent) 70%,var(--line))}
+.tab-panel{display:none;padding:8px 18px 18px}
+.tab-panel.active{display:block}
+.control-group{margin-top:15px}
+.control-group h3{margin:0 0 10px;font-size:14px;letter-spacing:.02em}
+.field{display:grid;gap:7px;margin:13px 0}
+.label-row{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.label-row label{font-size:13px;font-weight:600}
+.value{font-variant-numeric:tabular-nums;font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer}
+select{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px 11px;background:var(--panel-2);color:var(--ink)}
+.small-note{font-size:12px;color:var(--muted);margin-top:5px}
+.segmented{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.ratio-btn,.preset-btn{border:1px solid var(--line);background:var(--panel-2);border-radius:12px;padding:10px;text-align:left;cursor:pointer}
+.ratio-btn strong,.preset-btn strong{display:block;font-size:13px}
+.ratio-btn span,.preset-btn span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.ratio-btn.active,.preset-btn.active{border-color:var(--accent);background:var(--accent-soft)}
+.design-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.btn{border:1px solid var(--line);border-radius:11px;background:var(--panel-2);padding:9px 13px;cursor:pointer;font-weight:700;font-size:13px}
+.btn:hover{border-color:color-mix(in srgb,var(--accent) 60%,var(--line))}
+.btn.primary{background:var(--accent);color:light-dark(#fff,#16110d);border-color:var(--accent)}
+.btn.danger{color:var(--red)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.stage{display:grid;gap:16px}
+.cad-card{overflow:hidden}
+.cad-head{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line)}
+.cad-head h2{margin:0;font-size:18px}
+.cad-head p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.view-toggles{display:flex;gap:6px;flex-wrap:wrap}
+.view-btn{border:1px solid var(--line);background:var(--panel-2);border-radius:10px;padding:7px 10px;cursor:pointer;font-size:12px}
+.view-btn.active{background:var(--blue-soft);border-color:var(--blue);color:var(--blue)}
+.canvas-wrap{position:relative;background:linear-gradient(180deg,color-mix(in srgb,var(--panel-2) 76%,transparent),var(--panel));}
+canvas{display:block;width:100%;height:auto;min-height:390px}
+.canvas-legend{display:flex;gap:12px;flex-wrap:wrap;padding:10px 18px 15px;color:var(--muted);font-size:12px}
+.legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.metric{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px}
+.metric .label{font-size:11px;color:var(--muted);white-space:nowrap}
+.metric .num{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.03em;margin-top:2px}
+.metric .unit{font-size:11px;color:var(--muted);margin-left:3px}
+.metric .context{font-size:11px;color:var(--muted);min-height:32px;margin-top:2px}
+.insight{display:grid;grid-template-columns:1.3fr .7fr;gap:14px;padding:16px 18px;background:linear-gradient(135deg,var(--green-soft),color-mix(in srgb,var(--panel) 76%,transparent));border:1px solid color-mix(in srgb,var(--green) 36%,var(--line));border-radius:var(--radius)}
+.insight h3{margin:0 0 5px;font-size:15px}
+.insight p{margin:0;font-size:13px}
+.formula{align-self:start;background:color-mix(in srgb,var(--panel) 82%,transparent);border:1px dashed color-mix(in srgb,var(--green) 50%,var(--line));border-radius:14px;padding:11px 12px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;white-space:pre-wrap}
+.warning{margin-top:10px;border-radius:12px;padding:10px 12px;background:var(--red-soft);border:1px solid color-mix(in srgb,var(--red) 40%,var(--line));color:var(--red);font-size:12px}
+.warning.ok{background:var(--green-soft);border-color:color-mix(in srgb,var(--green) 40%,var(--line));color:var(--green)}
+.sheet{margin-top:22px;overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:end;padding:20px 22px 15px;border-bottom:1px solid var(--line)}
+.sheet-head h2{margin:0;font-size:24px}
+.sheet-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.design-code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;padding:8px 11px;color:var(--accent);font-weight:800}
+.sheet-body{padding:18px 22px 22px}
+.summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.summary-item{border:1px solid var(--line);border-radius:13px;padding:11px;background:var(--panel-2)}
+.summary-item .k{font-size:11px;color:var(--muted)}
+.summary-item .v{font-size:14px;font-weight:800;margin-top:3px}
+.check-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px}
+.check{border-radius:11px;padding:9px 11px;font-size:12px;background:var(--green-soft);border:1px solid color-mix(in srgb,var(--green) 34%,var(--line))}
+.check.bad{background:var(--red-soft);border-color:color-mix(in srgb,var(--red) 35%,var(--line));color:var(--red)}
+.sheet-footer{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-top:18px}
+.sheet-footer p{margin:0;color:var(--muted);font-size:12px}
+.duel-overlay{position:fixed;inset:0;z-index:50;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);overflow:auto;padding:20px}
+.duel-shell{width:min(1080px,100%);margin:0 auto}
+.duel-card{overflow:hidden}
+.duel-head{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:17px 20px;border-bottom:1px solid var(--line)}
+.duel-head h2{margin:0;font-size:24px}
+.duel-head p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.duel-body{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px;padding:16px}
+.opponent-controls{display:grid;gap:13px;align-content:start}
+.duel-stage{min-width:0;border:1px solid var(--line);border-radius:15px;overflow:hidden;background:var(--panel-2)}
+#duelCanvas{width:100%;height:auto;min-height:330px}
+.duel-hud{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:11px 13px 14px}
+.hud{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:9px}
+.hud .k{font-size:11px;color:var(--muted)}
+.hud .v{font-size:16px;font-weight:800;margin-top:3px}
+.countdown{font-size:38px;font-weight:900;letter-spacing:-.05em;margin-top:8px;min-height:48px}
+.log{height:150px;overflow:auto;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:10px;font-size:12px}
+.log div{padding:5px 0;border-bottom:1px solid var(--line)}
+.log div:last-child{border-bottom:0}
+.result-panel{display:none;margin-top:12px;border-radius:14px;padding:14px;background:var(--accent-soft);border:1px solid var(--accent)}
+.result-panel.show{display:block}
+.result-panel h3{margin:0 0 5px}
+.result-panel p{margin:0;font-size:13px}
+.rules{padding:0 20px 20px;color:var(--muted);font-size:12px}
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .hero-badge{justify-content:flex-start}
+  .workbench{grid-template-columns:1fr}
+  .controls{position:static}
+  .metrics{grid-template-columns:repeat(3,1fr)}
+  .summary-grid{grid-template-columns:repeat(2,1fr)}
+  .duel-body{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .app{width:min(100% - 18px,1240px);padding-top:10px}
+  .hero{padding-top:6px}
+  .hero h1{font-size:34px}
+  .tabs{padding-inline:8px}
+  .tab-panel,.control-head{padding-inline:14px}
+  .cad-head,.sheet-head,.duel-head{align-items:flex-start;flex-direction:column}
+  .metrics,.summary-grid,.check-list{grid-template-columns:1fr 1fr}
+  .insight{grid-template-columns:1fr}
+  .sheet-footer{flex-direction:column;align-items:stretch}
+  .duel-overlay{padding:8px}
+  .duel-hud{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff}
+  .controls,.hero-badge,.design-actions,.sheet-footer .btn,.tabs{display:none!important}
+  .workbench{display:block}
+  .panel,.sheet{box-shadow:none;break-inside:avoid}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <header class="hero">
+    <div>
+      <div class="eyebrow">D&T 中一級｜四足步行機械</div>
+      <h1>四足拔河機械實驗室</h1>
+      <p>先調底板、腳、X 型連桿、齒輪箱與電池，再鎖定設計卡；最後用最高 1 kg 的對手測試抓地力、速度與力量。</p>
+    </div>
+    <div class="hero-badge" aria-label="模擬條件">
+      <span class="pill"><strong>70093</strong> 齒輪箱</span>
+      <span class="pill"><strong>2 × AA</strong> ≈ 3.0 V</span>
+      <span class="pill">上限 <strong>300 × 150 × 180 mm</strong></span>
+      <span class="pill">勝出距離 <strong>75 mm</strong></span>
+    </div>
+  </header>
+
+  <main>
+    <section class="workbench" aria-label="設計工作台">
+      <aside class="panel controls">
+        <div class="control-head">
+          <h2>1. 設定你的機械</h2>
+          <p>每次調整都會即時重畫機構，並更新力量與摩擦估算。</p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="設定類別">
+          <button class="tab active" type="button" data-tab="base">底板</button>
+          <button class="tab" type="button" data-tab="leg">腳與連桿</button>
+          <button class="tab" type="button" data-tab="power">齒輪與電源</button>
+          <button class="tab" type="button" data-tab="grip">腳底物料</button>
+        </div>
+
+        <div class="tab-panel active" id="panel-base">
+          <div class="control-group">
+            <h3>亞加力底板</h3>
+            <div class="field">
+              <div class="label-row"><label for="baseLength">底板長度</label><output class="value" id="baseLengthOut">260 mm</output></div>
+              <input id="baseLength" data-bind="baseLength" type="range" min="180" max="300" step="5" value="260">
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="baseWidth">底板闊度</label><output class="value" id="baseWidthOut">105 mm</output></div>
+              <input id="baseWidth" data-bind="baseWidth" type="range" min="70" max="150" step="5" value="105">
+            </div>
+            <div class="small-note">比賽限制：長 ≤ 300 mm、闊 ≤ 150 mm、高 ≤ 180 mm。</div>
+          </div>
+          <div class="control-group">
+            <h3>重心提醒</h3>
+            <p class="small-note">齒輪箱與電池越靠近四隻腳形成的支撐範圍中心，行走越穩定；太前或太後會令個別腳的壓力下降。</p>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="panel-leg">
+          <div class="control-group">
+            <h3>整條腳</h3>
+            <div class="field">
+              <div class="label-row"><label for="legLength">支撐腳高度</label><output class="value" id="legLengthOut">75 mm</output></div>
+              <input id="legLength" data-bind="legLength" type="range" min="55" max="95" step="1" value="75">
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="legAngle">腿部前傾角</label><output class="value" id="legAngleOut">0°</output></div>
+              <input id="legAngle" data-bind="legAngle" type="range" min="-15" max="15" step="1" value="0">
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="footLength">腳板長度</label><output class="value" id="footLengthOut">100 mm</output></div>
+              <input id="footLength" data-bind="footLength" type="range" min="50" max="130" step="5" value="100">
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="footWidth">腳板闊度</label><output class="value" id="footWidthOut">50 mm</output></div>
+              <input id="footWidth" data-bind="footWidth" type="range" min="30" max="70" step="5" value="50">
+            </div>
+            <div class="field">
+              <label for="footShape">腳型</label>
+              <select id="footShape" data-bind="footShape">
+                <option value="rect">方腳：接觸面積最大</option>
+                <option value="rounded">圓腳：轉向較順</option>
+                <option value="taper">前窄後闊：減低拖腳</option>
+                <option value="sled">雪橇腳：低阻力但抓地較弱</option>
+                <option value="claw">爪形腳：軟地面抓地較好</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <h3>X 型平行運動連桿</h3>
+            <div class="field">
+              <label for="linkMode">連桿接法</label>
+              <select id="linkMode" data-bind="linkMode">
+                <option value="x">X 型交叉：前後腳改為反相</option>
+                <option value="parallel">平行接法：前後腳同相</option>
+              </select>
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="crankRadius">曲柄半徑</label><output class="value" id="crankRadiusOut">14 mm</output></div>
+              <input id="crankRadius" data-bind="crankRadius" type="range" min="8" max="24" step="1" value="14">
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="couplerLength">連桿長度</label><output class="value" id="couplerLengthOut">130 mm</output></div>
+              <input id="couplerLength" data-bind="couplerLength" type="range" min="110" max="150" step="1" value="130">
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="xLinkLength">X 桿長度</label><output class="value" id="xLinkLengthOut">130 mm</output></div>
+              <input id="xLinkLength" data-bind="xLinkLength" type="range" min="110" max="150" step="1" value="130">
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="pivotOffset">連桿接腳位置</label><output class="value" id="pivotOffsetOut">+8 mm</output></div>
+              <input id="pivotOffset" data-bind="pivotOffset" type="range" min="-35" max="35" step="1" value="8">
+              <div class="small-note">負值偏向腳跟，正值偏向腳尖；接點越偏外，腳板旋轉幅度越大。</div>
+            </div>
+            <div class="field">
+              <label for="pivotHeight">連桿接點高度</label>
+              <select id="pivotHeight" data-bind="pivotHeight">
+                <option value="low">低：拉力線接近地面</option>
+                <option value="mid" selected>中：平衡</option>
+                <option value="high">高：槓桿大但容易翻腳</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="panel-power">
+          <div class="control-group">
+            <h3>70093-660 齒輪箱速度比</h3>
+            <div class="segmented" id="ratioButtons" aria-label="齒輪箱速度比">
+              <button class="ratio-btn" type="button" data-ratio="16.6"><strong>快</strong><span>16.6 : 1｜高速弱扭力</span></button>
+              <button class="ratio-btn" type="button" data-ratio="31.3"><strong>中快</strong><span>31.3 : 1｜折衷</span></button>
+              <button class="ratio-btn active" type="button" data-ratio="71.9"><strong>中慢</strong><span>71.9 : 1｜較強扭力</span></button>
+              <button class="ratio-btn" type="button" data-ratio="203.7"><strong>慢</strong><span>203.7 : 1｜最大扭力</span></button>
+            </div>
+            <div class="small-note">速度比越大：輸出轉速越低、可用扭力越高，較適合拔河，但步頻會下降。</div>
+          </div>
+          <div class="control-group">
+            <h3>齒輪箱位置</h3>
+            <div class="field">
+              <div class="label-row"><label for="gearX">前後位置</label><output class="value" id="gearXOut">0 mm</output></div>
+              <input id="gearX" data-bind="gearX" type="range" min="-90" max="90" step="5" value="0">
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="gearY">左右位置</label><output class="value" id="gearYOut">0 mm</output></div>
+              <input id="gearY" data-bind="gearY" type="range" min="-45" max="45" step="5" value="0">
+            </div>
+          </div>
+          <div class="control-group">
+            <h3>2 × AA 電芯座位置</h3>
+            <div class="field">
+              <div class="label-row"><label for="batteryX">前後位置</label><output class="value" id="batteryXOut">-55 mm</output></div>
+              <input id="batteryX" data-bind="batteryX" type="range" min="-120" max="120" step="5" value="-55">
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="batteryY">左右位置</label><output class="value" id="batteryYOut">0 mm</output></div>
+              <input id="batteryY" data-bind="batteryY" type="range" min="-50" max="50" step="5" value="0">
+            </div>
+            <div class="small-note">兩粒 AA 串聯約 3.0 V；電池較重，應盡量放在四腳支撐範圍內。</div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="panel-grip">
+          <div class="control-group">
+            <h3>腳底摩擦物料</h3>
+            <div class="field">
+              <label for="footMaterial">安裝物料</label>
+              <select id="footMaterial" data-bind="footMaterial">
+                <option value="wood">未加物料（木板 μ≈0.30）</option>
+                <option value="cork">軟木墊（μ≈0.55）</option>
+                <option value="eva">EVA 泡棉（μ≈0.65）</option>
+                <option value="sand">砂紙（μ≈0.78）</option>
+                <option value="rubber" selected>橡膠墊（μ≈0.88）</option>
+                <option value="silicone">防滑矽膠（μ≈0.95）</option>
+              </select>
+            </div>
+            <div class="small-note">最大摩擦力 Fmax ≈ μ × 法向力 N。增加重量或提高 μ，都能增加抓地力，但重量亦會增加加速負擔。</div>
+          </div>
+          <div class="control-group">
+            <h3>課堂材料</h3>
+            <p class="small-note">建議腳板：50 × 100 × 3 mm 木板；連桿：110–150 mm 長、約 10 mm 闊、3 mm 厚木棒。模擬器仍容許超出現有尺寸，方便比較設計後果。</p>
+          </div>
+        </div>
+
+        <div class="design-actions">
+          <button class="btn primary" type="button" id="confirmBuildBtn">鎖定設計並準備比賽</button>
+          <button class="btn" type="button" id="printDesignBtn">列印設計卡</button>
+          <button class="btn danger" type="button" id="resetBtn">重設</button>
+        </div>
+      </aside>
+
+      <section class="stage" aria-label="機械模擬">
+        <div class="panel cad-card">
+          <div class="cad-head">
+            <div>
+              <h2>2. 虛擬原型與運動軌跡</h2>
+              <p>俯視圖顯示底板、X 連桿、齒輪箱、電池與四足；下方側視圖顯示曲柄及連桿行程。</p>
+            </div>
+            <div class="view-toggles" role="group" aria-label="顯示選項">
+              <button class="view-btn active" type="button" data-view="motion">顯示運動</button>
+              <button class="view-btn active" type="button" data-view="force">顯示力線</button>
+            </div>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="cadCanvas" width="900" height="540" role="img" aria-label="四足機械俯視及側視動態圖，會隨設定改變"></canvas>
+          </div>
+          <div class="canvas-legend">
+            <span><i class="legend-dot" style="background:var(--accent)"></i>齒輪箱／曲柄</span>
+            <span><i class="legend-dot" style="background:var(--blue)"></i>X 型連桿</span>
+            <span><i class="legend-dot" style="background:var(--green)"></i>腳板</span>
+            <span><i class="legend-dot" style="background:var(--red)"></i>拔河拉力</span>
+          </div>
+        </div>
+
+        <div class="metrics" id="metrics" aria-live="polite">
+          <div class="metric"><div class="label">估算拉動行程</div><div><span class="num" id="metricStride">0</span><span class="unit">mm</span></div><div class="context">曲柄與連桿的運動幅度</div></div>
+          <div class="metric"><div class="label">步頻</div><div><span class="num" id="metricCadence">0</span><span class="unit">步/s</span></div><div class="context">受齒輪速度比影響</div></div>
+          <div class="metric"><div class="label">可用拉力</div><div><span class="num" id="metricForce">0</span><span class="unit">N</span></div><div class="context">齒輪放大後的估算</div></div>
+          <div class="metric"><div class="label">摩擦上限</div><div><span class="num" id="metricTraction">0</span><span class="unit">N</span></div><div class="context">Fmax = μN</div></div>
+          <div class="metric"><div class="label">重心穩定度</div><div><span class="num" id="metricStability">0</span><span class="unit">%</span></div><div class="context">重量是否在四足範圍內</div></div>
+        </div>
+
+        <div class="insight" aria-live="polite">
+          <div>
+            <h3 id="scienceTitle">齒輪的取捨</h3>
+            <p id="scienceText">高速度比會降低輸出轉速，但同時把馬達扭力放大。</p>
+            <div class="warning ok" id="warningBox">尺寸及連桿符合課堂建議範圍。</div>
+          </div>
+          <div class="formula" id="formulaText">VR = 隨動輪齒數 ÷ 主動輪齒數
+總 VR = VR₁ × VR₂ × VR₃</div>
+        </div>
+      </section>
+    </section>
+
+    <section class="sheet" id="designSheet" aria-labelledby="sheetTitle">
+      <div class="sheet-head">
+        <div>
+          <h2 id="sheetTitle">3. 設計設定總表</h2>
+          <p>先核對各部分，再按「鎖定設計並準備比賽」。之後仍可返回修改。</p>
+        </div>
+        <div class="design-code" id="designCode">DESIGN-000000</div>
+      </div>
+      <div class="sheet-body">
+        <div class="summary-grid" id="summaryGrid"></div>
+        <div class="check-list" id="checkList"></div>
+        <div class="sheet-footer">
+          <p>模擬數值用作比較及推理，不代替實物測試。正式比賽須遵守底板、電源及材料限制。</p>
+          <button class="btn primary" type="button" id="startFromSheetBtn">確認設計，挑戰對手</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="duel-overlay" id="duelOverlay" hidden>
+  <div class="duel-shell">
+    <div class="duel-card">
+      <div class="duel-head">
+        <div>
+          <h2>4. 75 mm 拔河對決</h2>
+          <p>把對方拉到 +75 mm 即勝；被拉過 −75 mm 即負。觀察重量與抓地力怎樣改變結果。</p>
+        </div>
+        <button class="btn" type="button" id="duelCloseBtn">返回修改</button>
+      </div>
+      <div class="duel-body">
+        <aside class="opponent-controls">
+          <div>
+            <div class="label-row"><label for="rivalMass">對手重量</label><output class="value" id="rivalMassOut">0.70 kg</output></div>
+            <input id="rivalMass" type="range" min="0.20" max="1.00" step="0.05" value="0.70">
+          </div>
+          <div>
+            <div class="small-note">對手策略預設</div>
+            <div class="segmented" id="rivalPresets">
+              <button class="preset-btn active" type="button" data-preset="balanced"><strong>平衡型</strong><span>中速 + 橡膠</span></button>
+              <button class="preset-btn" type="button" data-preset="heavy"><strong>重型</strong><span>慢速 + 高摩擦</span></button>
+              <button class="preset-btn" type="button" data-preset="fast"><strong>輕快型</strong><span>高速 + 泡棉</span></button>
+            </div>
+          </div>
+          <div class="countdown" id="countdown" aria-live="assertive">準備</div>
+          <button class="btn primary" type="button" id="startDuelBtn">開始拔河</button>
+          <button class="btn" type="button" id="retryDuelBtn">重新挑戰</button>
+          <div class="log" id="duelLog" aria-live="polite"></div>
+        </aside>
+        <section class="duel-stage">
+          <canvas id="duelCanvas" width="900" height="420" role="img" aria-label="兩部四足機械拔河動態比賽"></canvas>
+          <div class="duel-hud">
+            <div class="hud"><div class="k">中心位移</div><div class="v" id="ropePosition">0 mm</div></div>
+            <div class="hud"><div class="k">我方拉力</div><div class="v" id="playerTension">0 N</div></div>
+            <div class="hud"><div class="k">對方拉力</div><div class="v" id="rivalTension">0 N</div></div>
+          </div>
+          <div class="result-panel" id="resultPanel">
+            <h3 id="resultTitle">賽果</h3>
+            <p id="resultText"></p>
+          </div>
+        </section>
+      </div>
+      <div class="rules">科學提示：重物可增加 N，令 μN 上升；但如果馬達扭力不足，或歩頻太慢，重量就可能變成負擔。最佳設計通常不是「最重」或「最快」，而是力量、速度與抓地力互相配合。</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+const DEFAULTS = {
+  baseLength: 260, baseWidth: 105,
+  legLength: 75, legAngle: 0,
+  footLength: 100, footWidth: 50, footShape: 'rect',
+  linkMode: 'x', crankRadius: 14, couplerLength: 130,
+  xLinkLength: 130, pivotOffset: 8, pivotHeight: 'mid',
+  ratio: 71.9, gearX: 0, gearY: 0, batteryX: -55, batteryY: 0,
+  footMaterial: 'rubber'
+};
+let state = {...DEFAULTS};
+let activeTopic = 'base';
+let showMotion = true;
+let showForce = true;
+let animTime = 0;
+
+const MATERIALS = {
+  wood:   {label:'未加物料', short:'木板', mu:.30, contact:.96, color:'#9b6f3f'},
+  cork:   {label:'軟木墊', short:'軟木', mu:.55, contact:.97, color:'#c89b61'},
+  eva:    {label:'EVA 泡棉', short:'EVA', mu:.65, contact:.95, color:'#4a9685'},
+  sand:   {label:'砂紙', short:'砂紙', mu:.78, contact:.94, color:'#8c7355'},
+  rubber: {label:'橡膠墊', short:'橡膠', mu:.88, contact:1.0, color:'#303733'},
+  silicone:{label:'防滑矽膠', short:'矽膠', mu:.95, contact:1.0, color:'#5868a4'}
+};
+const RATIOS = {
+  16.6:  {label:'快',   rpmFactor:1.00, efficiency:.84, color:'#e07a35'},
+  31.3:  {label:'中快', rpmFactor:.94, efficiency:.79, color:'#ca963c'},
+  71.9:  {label:'中慢', rpmFactor:.86, efficiency:.72, color:'#4e8b6d'},
+  203.7: {label:'慢',   rpmFactor:.72, efficiency:.58, color:'#4a6f9b'}
+};
+const SHAPES = {
+  rect:   {label:'方腳', contact:1.00, drag:1.00},
+  rounded:{label:'圓腳', contact:.97, drag:.97},
+  taper:  {label:'前窄後闊', contact:.94, drag:.90},
+  sled:   {label:'雪橇腳', contact:.78, drag:.72},
+  claw:   {label:'爪形腳', contact:.92, drag:1.08}
+};
+const PIVOT_HEIGHT = {
+  low:{label:'低', clearance:.93, lever:.92},
+  mid:{label:'中', clearance:1.00, lever:1.00},
+  high:{label:'高', clearance:1.02, lever:1.08}
+};
+const PRESETS = {
+  balanced:{mass:.70, ratio:31.3, material:'rubber', label:'平衡型'},
+  heavy:{mass:1.00, ratio:203.7, material:'silicone', label:'重型'},
+  fast:{mass:.35, ratio:16.6, material:'eva', label:'輕快型'}
+};
+
+try {
+  const saved = localStorage.getItem('fourLegTugDesignV1');
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    state = {...DEFAULTS, ...parsed};
+  }
+} catch (_) {}
+
+const $ = (sel, root=document) => root.querySelector(sel);
+const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+const fmt = (v,n=1) => Number(v).toFixed(n);
+const signed = v => `${v > 0 ? '+' : ''}${v}`;
+
+function syncUI() {
+  Object.entries(state).forEach(([key,val]) => {
+    const el = document.querySelector(`[data-bind="${key}"]`);
+    if (el) el.value = val;
+  });
+  const outputMap = {
+    baseLength:v=>`${v} mm`, baseWidth:v=>`${v} mm`,
+    legLength:v=>`${v} mm`, legAngle:v=>`${v}°`,
+    footLength:v=>`${v} mm`, footWidth:v=>`${v} mm`,
+    crankRadius:v=>`${v} mm`, couplerLength:v=>`${v} mm`,
+    xLinkLength:v=>`${v} mm`, pivotOffset:v=>`${signed(v)} mm`,
+    gearX:v=>`${signed(v)} mm`, gearY:v=>`${signed(v)} mm`,
+    batteryX:v=>`${signed(v)} mm`, batteryY:v=>`${signed(v)} mm`
+  };
+  Object.entries(outputMap).forEach(([key,fn]) => {
+    const out = document.getElementById(key+'Out');
+    if (out) out.textContent = fn(state[key]);
+  });
+  $$('.ratio-btn').forEach(btn => btn.classList.toggle('active', Number(btn.dataset.ratio) === Number(state.ratio)));
+}
+
+function saveState() {
+  try { localStorage.setItem('fourLegTugDesignV1', JSON.stringify(state)); } catch (_) {}
+}
+
+function setValue(key, raw) {
+  const numeric = ['baseLength','baseWidth','legLength','legAngle','footLength','footWidth','crankRadius','couplerLength','xLinkLength','pivotOffset','gearX','gearY','batteryX','batteryY'].includes(key);
+  state[key] = numeric ? Number(raw) : raw;
+  syncUI();
+  saveState();
+  updateAll();
+}
+
+function updateAll() {
+  const model = calculateModel(state);
+  updateMetrics(model);
+  updateScience(model);
+  updateSummary(model);
+  return model;
+}
+
+function calculateModel(s) {
+  const ratio = RATIOS[s.ratio] || RATIOS[71.9];
+  const mat = MATERIALS[s.footMaterial] || MATERIALS.rubber;
+  const shape = SHAPES[s.footShape] || SHAPES.rect;
+  const pivotH = PIVOT_HEIGHT[s.pivotHeight] || PIVOT_HEIGHT.mid;
+
+  const linkGeoError = Math.abs(s.couplerLength - (s.legLength + 48)) / 48
+    + Math.abs(s.xLinkLength - s.couplerLength) / 180
+    + Math.abs(s.crankRadius - 14) / 80;
+  const linkScore = clamp(1 - linkGeoError * .28, .62, 1);
+  const deadPointRisk = clamp((s.crankRadius * 2 + 28) / s.couplerLength, 0, 1.2);
+  const xCrossFactor = s.linkMode === 'x' ? .94 : .98;
+  const pivotLever = 1 + Math.abs(s.pivotOffset) / 150;
+  const angleFactor = 1 - Math.abs(s.legAngle) / 130;
+
+  const stride = clamp(
+    (s.crankRadius * 1.65 + 5.5) * linkScore * pivotLever * angleFactor
+    + (s.footLength / 100 - 1) * 3.2,
+    12, 62
+  );
+  const loadedMotorRpm = 4800;
+  const cadence = clamp(
+    (loadedMotorRpm / s.ratio / 60) * 2 * linkScore * ratio.rpmFactor * (1 - Math.abs(s.legAngle)/180),
+    .35, 10
+  );
+
+  const motorTorqueNm = .00042;
+  const torqueAfterGearbox = motorTorqueNm * s.ratio * ratio.efficiency;
+  const crankM = Math.max(.008, s.crankRadius / 1000);
+  const driveForce = clamp((torqueAfterGearbox / crankM) * linkScore * xCrossFactor / pivotH.lever, .25, 18);
+
+  const baseMass = s.baseLength/1000 * s.baseWidth/1000 * .003 * 1180;
+  const legMass = 4 * (s.footLength/1000 * s.footWidth/1000 * .003 * 650);
+  const hardwareMass = .12 + .075 + .045;
+  const materialMass = s.footMaterial === 'wood' ? .004 : .018;
+  const machineMass = baseMass + legMass + hardwareMass + materialMass;
+
+  const weightedX = (s.gearX * .075 + s.batteryX * .055) / .13;
+  const weightedY = (s.gearY * .075 + s.batteryY * .055) / .13;
+  const supportX = Math.max(35, s.baseLength/2 - s.footLength*.28);
+  const supportY = Math.max(28, s.baseWidth/2 + s.footWidth*.15);
+  const stability = clamp(1 - (Math.abs(weightedX) / supportX) * .58 - (Math.abs(weightedY) / supportY) * .32, .28, 1);
+  const normalN = machineMass * 9.81;
+  const traction = normalN * mat.mu * shape.contact * (0.88 + stability * .12);
+  const effectivePull = Math.min(driveForce, traction) * clamp(.78 + cadence * .055, .76, 1.05);
+  const avgSpeed = stride / 1000 * cadence;
+  const height = Math.ceil(s.legLength + 22 + 3);
+  const groundClearance = (s.legLength - 52) * .52 + (pivotH.clearance - 1) * 6;
+
+  const warnings = [];
+  if (s.baseLength > 300 || s.baseWidth > 150 || height > 180) warnings.push('超出比賽尺寸上限。');
+  if (s.couplerLength < s.legLength + 28) warnings.push('連桿相對腳架可能太短，傳動角會變差。');
+  if (Math.abs(s.pivotOffset) > s.footLength * .38) warnings.push('連桿接點太靠近腳板末端，實物容易撬腳。');
+  if (stability < .62) warnings.push('重心太接近支撐範圍邊緣，行路易擺動。');
+  if (cadence < .72 && s.footLength < 80) warnings.push('慢速齒輪配合短腳板，步幅可能太小。');
+  if (traction < driveForce * .72) warnings.push('馬達拉力大於腳底摩擦上限，輪／腳會打滑。');
+  if (s.footLength !== 100 || s.footWidth !== 50) warnings.push('腳板已偏離課堂提供的 50 × 100 mm 木板。');
+
+  return {ratio,mat,shape,pivotH,linkScore,deadPointRisk,stride,cadence,driveForce,traction,effectivePull,avgSpeed,machineMass,normalN,stability,height,groundClearance,warnings};
+}
+
+function updateMetrics(m) {
+  $('#metricStride').textContent = fmt(m.stride,0);
+  $('#metricCadence').textContent = fmt(m.cadence,1);
+  $('#metricForce').textContent = fmt(m.driveForce,1);
+  $('#metricTraction').textContent = fmt(m.traction,1);
+  $('#metricStability').textContent = fmt(m.stability*100,0);
+}
+
+function updateScience(m) {
+  const data = {
+    base: {
+      title:'重心落在四足支撐範圍',
+      text:'底板越長越闊，四腳圍出的支撐面越大；但齒輪箱與電池若放在一端，會令另一端的法向力下降。',
+      formula:'穩定條件：\n重心投影落在四腳支撐多邊形內\n穩定度 ≈ ' + fmt(m.stability*100,0) + '%'
+    },
+    leg: {
+      title:'連桿把旋轉變成步行軌跡',
+      text:'曲柄轉一圈，連桿帶腳板做抬腳、前移、着地、後蹬。X 型交叉會改變前後腳的相位；接點位置則改變腳板擺幅。',
+      formula:`估算步幅 ≈ ${fmt(m.stride,1)} mm\n每轉步數 = 2（前後各一步）`
+    },
+    power: {
+      title:'齒輪箱的力量與速度取捨',
+      text:`現在使用 ${state.ratio}:1。速度比越高，輸出轉速下降，但扭力按比例放大；齒輪摩擦亦會造成能量損耗。`,
+      formula:`VR = 隨動輪齒數 ÷ 主動輪齒數\n現在 VR = ${state.ratio} : 1\n估算拉力 ≈ ${fmt(m.driveForce,1)} N`
+    },
+    grip: {
+      title:'腳底摩擦限制實際拉力',
+      text:`${m.mat.label}的 μ 約為 ${m.mat.mu.toFixed(2)}。即使馬達能拉 ${fmt(m.driveForce,1)} N，超過 ${fmt(m.traction,1)} N 的部分仍可能打滑。`,
+      formula:`Fmax ≈ μN\n= ${m.mat.mu.toFixed(2)} × ${fmt(m.normalN,2)} N\n≈ ${fmt(m.traction,1)} N`
+    }
+  }[activeTopic];
+  $('#scienceTitle').textContent = data.title;
+  $('#scienceText').textContent = data.text;
+  $('#formulaText').textContent = data.formula;
+  const warning = $('#warningBox');
+  if (m.warnings.length) {
+    warning.classList.remove('ok');
+    warning.textContent = m.warnings.join(' ');
+  } else {
+    warning.classList.add('ok');
+    warning.textContent = '尺寸、連桿角度與抓地力配合良好，可以鎖定設計。';
+  }
+}
+
+function updateSummary(m) {
+  const modeLabels = {x:'X 型交叉', parallel:'平行接法'};
+  const items = [
+    ['底板長 × 闊', `${state.baseLength} × ${state.baseWidth} mm`],
+    ['估算高度', `${m.height} mm`],
+    ['腳板及腳型', `${state.footLength} × ${state.footWidth} mm｜${m.shape.label}`],
+    ['支撐腳高度', `${state.legLength} mm｜${signed(state.legAngle)}°`],
+    ['曲柄半徑', `${state.crankRadius} mm`],
+    ['連桿／X 桿', `${state.couplerLength} / ${state.xLinkLength} mm`],
+    ['連桿接腳位置', `${signed(state.pivotOffset)} mm｜${m.pivotH.label}位置`],
+    ['連桿模式', modeLabels[state.linkMode]],
+    ['齒輪箱 VR', `${state.ratio} : 1（${m.ratio.label}）`],
+    ['齒輪箱位置', `${signed(state.gearX)}, ${signed(state.gearY)} mm`],
+    ['電池座位置', `${signed(state.batteryX)}, ${signed(state.batteryY)} mm`],
+    ['腳底物料', `${m.mat.label}（μ≈${m.mat.mu.toFixed(2)}）`],
+    ['預估質量', `${fmt(m.machineMass,2)} kg`],
+    ['預估拉動表現', `${fmt(m.effectivePull,1)} N｜${fmt(m.avgSpeed,2)} m/s`]
+  ];
+  $('#summaryGrid').innerHTML = items.map(([k,v]) => `<div class="summary-item"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+
+  const checks = [
+    ['底板 ≤ 300 × 150 mm', state.baseLength <= 300 && state.baseWidth <= 150],
+    ['高度 ≤ 180 mm', m.height <= 180],
+    ['連桿 110–150 mm', state.couplerLength >= 110 && state.couplerLength <= 150],
+    ['接點在腳板內', Math.abs(state.pivotOffset) <= state.footLength * .38],
+    ['重心穩定', m.stability >= .62],
+    ['足夠抓地力', m.traction >= m.driveForce * .72],
+    ['腳板符合 50 × 100 mm', state.footLength === 100 && state.footWidth === 50],
+    ['步頻可持續行走', m.cadence >= .72]
+  ];
+  $('#checkList').innerHTML = checks.map(([label,ok]) => `<div class="check ${ok ? '' : 'bad'}">${ok ? '✓' : '!'} ${label}</div>`).join('');
+  $('#designCode').textContent = 'DESIGN-' + designHash(state);
+}
+
+function designHash(s) {
+  const text = JSON.stringify(s);
+  let hash = 2166136261;
+  for (let i=0;i<text.length;i++) {
+    hash ^= text.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36).toUpperCase().padStart(7,'0').slice(0,7);
+}
+
+$$('.tab').forEach(btn => btn.addEventListener('click', () => {
+  $$('.tab').forEach(x => x.classList.toggle('active', x === btn));
+  $$('.tab-panel').forEach(panel => panel.classList.toggle('active', panel.id === 'panel-' + btn.dataset.tab));
+  activeTopic = btn.dataset.tab;
+  updateAll();
+}));
+
+$$('[data-bind]').forEach(el => {
+  el.addEventListener('input', e => setValue(e.target.dataset.bind, e.target.value));
+  el.addEventListener('change', e => setValue(e.target.dataset.bind, e.target.value));
+});
+
+$$('.ratio-btn').forEach(btn => btn.addEventListener('click', () => {
+  setValue('ratio', Number(btn.dataset.ratio));
+  activeTopic = 'power';
+}));
+
+$$('.view-btn').forEach(btn => btn.addEventListener('click', () => {
+  const key = btn.dataset.view;
+  if (key === 'motion') showMotion = !showMotion;
+  if (key === 'force') showForce = !showForce;
+  btn.classList.toggle('active', key === 'motion' ? showMotion : showForce);
+}));
+
+$('#resetBtn').addEventListener('click', () => {
+  state = {...DEFAULTS};
+  syncUI();
+  saveState();
+  updateAll();
+});
+
+$('#printDesignBtn').addEventListener('click', () => window.print());
+$('#confirmBuildBtn').addEventListener('click', () => {
+  updateAll();
+  $('#designSheet').scrollIntoView({behavior:'smooth', block:'start'});
+});
+$('#startFromSheetBtn').addEventListener('click', openDuel);
+
+
+function palette() {
+  const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+  return dark ? {
+    ink:'#f2f6f1', muted:'#aab6ad', line:'#4a564e', panel:'#1b211d', panel2:'#242d26',
+    board:'#e9f1ec', boardSide:'#b5c9bb', floor:'#151b17', grid:'#334037', accent:'#ff9b58',
+    blue:'#79b9ed', green:'#73d6a6', red:'#ff8c8c', gold:'#f0bd5c', shadow:'rgba(0,0,0,.35)'
+  } : {
+    ink:'#17201c', muted:'#66716a', line:'#d0d8d1', panel:'#fffdf8', panel2:'#f3f1e9',
+    board:'#f9fbf7', boardSide:'#d9e2da', floor:'#e8ece7', grid:'#d7ddd7', accent:'#df6b2d',
+    blue:'#3c6f9d', green:'#2e7d5b', red:'#ae3d3d', gold:'#b17018', shadow:'rgba(30,40,32,.16)'
+  };
+}
+function roundRect(ctx,x,y,w,h,r) {
+  const rr = Math.min(r, Math.abs(w)/2, Math.abs(h)/2);
+  ctx.beginPath();
+  ctx.moveTo(x+rr,y);
+  ctx.arcTo(x+w,y,x+w,y+h,rr);
+  ctx.arcTo(x+w,y+h,x,y+h,rr);
+  ctx.arcTo(x,y+h,x,y,rr);
+  ctx.arcTo(x,y,x+w,y,rr);
+  ctx.closePath();
+}
+function fitCanvas(canvas, minH=360) {
+  const rect = canvas.getBoundingClientRect();
+  const cssW = Math.max(280, rect.width || canvas.parentElement?.clientWidth || 720);
+  const cssH = Math.max(minH, Math.min(620, cssW * (canvas.id === 'duelCanvas' ? .48 : .60)));
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const pixelW = Math.round(cssW*dpr), pixelH = Math.round(cssH*dpr);
+  if (canvas.width !== pixelW || canvas.height !== pixelH) {
+    canvas.width = pixelW;
+    canvas.height = pixelH;
+    canvas.style.height = cssH + 'px';
+  }
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  return {ctx,w:cssW,h:cssH};
+}
+function wrapText(ctx,text,x,y,maxWidth,lineHeight) {
+  const words = String(text).split(/(\s+)/);
+  let line = '', yy = y;
+  for (const word of words) {
+    const test = line + word;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      ctx.fillText(line.trim(),x,yy);
+      line = word; yy += lineHeight;
+    } else line = test;
+  }
+  if (line.trim()) ctx.fillText(line.trim(),x,yy);
+}
+
+function drawCAD() {
+  const c = $('#cadCanvas');
+  if (!c) return;
+  const {ctx,w,h} = fitCanvas(c,390);
+  const p = palette();
+  const m = calculateModel(state);
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle = p.panel; ctx.fillRect(0,0,w,h);
+  const topH = h * .70;
+  drawTopView(ctx,0,0,w,topH,p,m);
+  ctx.strokeStyle = p.line; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(18,topH+4); ctx.lineTo(w-18,topH+4); ctx.stroke();
+  drawSideView(ctx,0,topH+10,w,h-topH-10,p,m);
+}
+
+function drawTopView(ctx,x0,y0,w,h,p,m) {
+  ctx.save();
+  ctx.fillStyle = p.floor;
+  roundRect(ctx,x0+10,y0+10,w-20,h-20,18); ctx.fill();
+  ctx.strokeStyle = p.grid; ctx.lineWidth = 1;
+  for (let x=x0+24;x<x0+w-20;x+=28) { ctx.beginPath(); ctx.moveTo(x,y0+14); ctx.lineTo(x,y0+h-14); ctx.stroke(); }
+  for (let y=y0+24;y<y0+h-18;y+=28) { ctx.beginPath(); ctx.moveTo(x0+14,y); ctx.lineTo(x0+w-14,y); ctx.stroke(); }
+
+  const footGapX = Math.max(12,state.baseLength/2 - state.footLength*.42);
+  const footGapY = state.baseWidth/2 + state.footWidth*.30;
+  const worldW = state.baseWidth + state.footWidth*1.2;
+  const scale = Math.max(.55, Math.min((w-150)/state.baseLength, (h-105)/worldW));
+  const cx = x0 + w/2 - 8, cy = y0 + h/2 + 5;
+  const world = (x,y) => ({x:cx+x*scale,y:cy+y*scale});
+  const boardP1 = world(-state.baseLength/2,-state.baseWidth/2);
+  const boardP2 = world(state.baseLength/2,state.baseWidth/2);
+
+  ctx.save();
+  ctx.shadowColor = p.shadow; ctx.shadowBlur = 18; ctx.shadowOffsetY = 8;
+  ctx.fillStyle = p.board; roundRect(ctx,boardP1.x,boardP1.y,boardP2.x-boardP1.x,boardP2.y-boardP1.y,12); ctx.fill();
+  ctx.restore();
+  ctx.strokeStyle = p.boardSide; ctx.lineWidth = 2; ctx.stroke();
+
+  ctx.setLineDash([7,7]); ctx.strokeStyle = p.grid;
+  ctx.beginPath(); ctx.moveTo(cx,boardP1.y+2); ctx.lineTo(cx,boardP2.y-2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(boardP1.x+2,cy); ctx.lineTo(boardP2.x-2,cy); ctx.stroke();
+  ctx.setLineDash([]);
+
+  const footPositions = {};
+  [-1,1].forEach(side => {
+    footPositions[side] = {};
+    [-1,1].forEach(end => {
+      let phase = Math.sin(animTime * m.cadence * Math.PI*2);
+      if (state.linkMode === 'x') phase *= (end*side);
+      else phase *= 1;
+      const lift = Math.max(0,Math.sin(animTime*m.cadence*Math.PI*2 + (end<0 ? Math.PI*.25 : 0))) * 2.4;
+      const gx = end*footGapX + phase*m.stride*.38;
+      const gy = side*footGapY;
+      const pos = world(gx,gy);
+      footPositions[side][end] = {gx,gy,pos,lift,phase};
+    });
+  });
+
+  [-1,1].forEach(side => {
+    const rear = footPositions[side][-1], front = footPositions[side][1];
+    const rearBody = world(-state.baseLength*.27, side*state.baseWidth*.34);
+    const frontBody = world(state.baseLength*.27, side*state.baseWidth*.34);
+    const rearPivot = world(rear.gx + state.pivotOffset, rear.gy);
+    const frontPivot = world(front.gx + state.pivotOffset, front.gy);
+    ctx.strokeStyle = p.blue; ctx.lineWidth = Math.max(2,3.2*Math.min(1.2,scale)); ctx.lineCap = 'round';
+    if (state.linkMode === 'x') {
+      ctx.beginPath(); ctx.moveTo(rearPivot.x,rearPivot.y); ctx.lineTo(frontBody.x,frontBody.y); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(frontPivot.x,frontPivot.y); ctx.lineTo(rearBody.x,rearBody.y); ctx.stroke();
+    } else {
+      ctx.beginPath(); ctx.moveTo(rearPivot.x,rearPivot.y); ctx.lineTo(rearBody.x,rearBody.y); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(frontPivot.x,frontPivot.y); ctx.lineTo(frontBody.x,frontBody.y); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(rearBody.x,rearBody.y); ctx.lineTo(frontBody.x,frontBody.y); ctx.stroke();
+    }
+  });
+
+  [-1,1].forEach(side => [-1,1].forEach(end => {
+    const fp = footPositions[side][end];
+    const screen = fp.pos;
+    const sx = state.footLength*scale*.62, sy = state.footWidth*scale*.52;
+    ctx.save();
+    if (fp.lift > .2) {
+      ctx.fillStyle = 'rgba(0,0,0,.12)';
+      roundRect(ctx,screen.x-sx/2+3,screen.y-sy/2+5,sx,sy,7); ctx.fill();
+    }
+    ctx.translate(screen.x,screen.y-fp.lift); ctx.rotate(fp.phase*.055);
+    ctx.fillStyle = p.green; ctx.strokeStyle = p.panel; ctx.lineWidth=2;
+    ctx.beginPath();
+    if (state.footShape === 'rounded') {
+      roundRect(ctx,-sx/2,-sy/2,sx,sy,sy/2); ctx.fill(); ctx.stroke();
+    } else if (state.footShape === 'taper') {
+      ctx.moveTo(-sx*.48,-sy*.44); ctx.lineTo(sx*.50,-sy*.30); ctx.lineTo(sx*.50,sy*.30); ctx.lineTo(-sx*.48,sy*.44); ctx.closePath(); ctx.fill(); ctx.stroke();
+    } else if (state.footShape === 'sled') {
+      ctx.moveTo(-sx*.52,-sy*.34); ctx.quadraticCurveTo(0,-sy*.66,sx*.55,-sy*.16); ctx.lineTo(sx*.55,sy*.34); ctx.quadraticCurveTo(0,sy*.55,-sx*.52,sy*.34); ctx.closePath(); ctx.fill(); ctx.stroke();
+    } else if (state.footShape === 'claw') {
+      ctx.moveTo(-sx*.50,-sy*.44); ctx.lineTo(sx*.50,-sy*.24); ctx.lineTo(sx*.34,sy*.24); ctx.lineTo(sx*.50,sy*.44); ctx.lineTo(-sx*.50,sy*.44); ctx.closePath(); ctx.fill(); ctx.stroke();
+    } else {
+      roundRect(ctx,-sx/2,-sy/2,sx,sy,3); ctx.fill(); ctx.stroke();
+    }
+    const px = state.pivotOffset*scale;
+    ctx.fillStyle = p.accent; ctx.beginPath(); ctx.arc(px,0,Math.max(3,3.8*scale),0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  }));
+
+  const gp = world(state.gearX,state.gearY);
+  ctx.save(); ctx.shadowColor=p.shadow; ctx.shadowBlur=10;
+  ctx.fillStyle=p.panel2; ctx.strokeStyle=p.accent; ctx.lineWidth=2;
+  roundRect(ctx,gp.x-29,gp.y-21,58,42,8); ctx.fill(); ctx.stroke();
+  ctx.fillStyle=p.gold; ctx.beginPath(); ctx.arc(gp.x-9,gp.y,11,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle=p.accent; ctx.beginPath(); ctx.arc(gp.x+11,gp.y,7,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle=p.panel; ctx.font='700 10px sans-serif'; ctx.textAlign='center'; ctx.fillText('70093',gp.x,gp.y+2);
+  ctx.restore();
+
+  const bp = world(state.batteryX,state.batteryY);
+  ctx.save(); ctx.translate(bp.x,bp.y);
+  ctx.fillStyle=p.blue; ctx.strokeStyle=p.panel; ctx.lineWidth=2;
+  roundRect(ctx,-32,-15,64,30,8); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = 'rgba(255,255,255,.82)';
+  [-12,12].forEach(dx => { roundRect(ctx,dx-8,-10,16,20,5); ctx.fill(); });
+  ctx.fillStyle=p.ink; ctx.font='700 9px sans-serif'; ctx.textAlign='center'; ctx.fillText('2 × AA',0,3);
+  ctx.restore();
+
+  if (showForce) {
+    const start = world(state.baseLength/2,0);
+    const endX = x0+w-24;
+    ctx.strokeStyle=p.red; ctx.lineWidth=4; ctx.beginPath(); ctx.moveTo(start.x,start.y); ctx.lineTo(endX,start.y); ctx.stroke();
+    ctx.fillStyle=p.red; ctx.beginPath(); ctx.moveTo(endX,start.y); ctx.lineTo(endX-12,start.y-7); ctx.lineTo(endX-12,start.y+7); ctx.closePath(); ctx.fill();
+    ctx.font='700 12px sans-serif'; ctx.textAlign='right'; ctx.fillStyle=p.red; ctx.fillText('拉力',endX-16,start.y-10);
+  }
+
+  ctx.fillStyle=p.muted; ctx.font='700 12px sans-serif'; ctx.textAlign='left';
+  ctx.fillText('俯視圖',x0+24,y0+30);
+  ctx.fillStyle=p.ink; ctx.font='700 12px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('前',cx+state.baseLength/2*scale+46,cy+4);
+  ctx.fillText('後',cx-state.baseLength/2*scale-42,cy+4);
+  ctx.fillStyle=p.muted; ctx.font='11px sans-serif';
+  ctx.fillText('X 型連桿',cx-30,cy-state.baseWidth/2*scale-30);
+  ctx.restore();
+}
+
+function drawSideView(ctx,x0,y0,w,h,p,m) {
+  ctx.save();
+  const groundY = y0+h-28;
+  const bodyY = groundY - Math.max(42, state.legLength*.60);
+  const pxPerMm = Math.min(.86,Math.max(.42,(bodyY-y0-18)/130));
+  const center = x0+w/2;
+  ctx.strokeStyle=p.grid; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x0+16,groundY); ctx.lineTo(x0+w-16,groundY); ctx.stroke();
+  ctx.fillStyle=p.muted; ctx.font='11px sans-serif'; ctx.textAlign='left'; ctx.fillText('側視圖：曲柄 → 連桿 → 腳板',x0+24,y0+20);
+
+  ctx.strokeStyle=p.line; ctx.lineWidth=7; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(center-state.baseLength*.32,bodyY); ctx.lineTo(center+state.baseLength*.32,bodyY); ctx.stroke();
+
+  const gearScreenX = center + state.gearX*.75;
+  ctx.fillStyle=p.accent; roundRect(ctx,gearScreenX-22,bodyY-13,44,26,6); ctx.fill();
+  ctx.fillStyle=p.gold; ctx.beginPath(); ctx.arc(gearScreenX,bodyY+13,12,0,Math.PI*2); ctx.fill();
+
+  const crankAngle = animTime*m.cadence*Math.PI*2;
+  const crankPin = {x:gearScreenX + Math.cos(crankAngle)*state.crankRadius*.75, y:bodyY+13 + Math.sin(crankAngle)*state.crankRadius*.75};
+  ctx.strokeStyle=p.accent; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(gearScreenX,bodyY+13); ctx.lineTo(crankPin.x,crankPin.y); ctx.stroke();
+
+  [-1,1].forEach(end => {
+    const phase = crankAngle + (state.linkMode==='x' && end<0 ? Math.PI : 0);
+    const anchorX = center + end*state.baseLength*.29;
+    const footX = anchorX + Math.cos(phase)*m.stride*.38;
+    const pivotY = groundY - (state.pivotHeight==='low'?4:state.pivotHeight==='high'?13:8);
+    const pinY = bodyY+13 + Math.sin(phase)*state.crankRadius*.75;
+    const pinX = gearScreenX + Math.cos(phase)*state.crankRadius*.75;
+    ctx.strokeStyle=p.green; ctx.lineWidth=6; ctx.beginPath(); ctx.moveTo(anchorX,bodyY); ctx.lineTo(footX,pivotY); ctx.stroke();
+    ctx.strokeStyle=p.blue; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(pinX,pinY); ctx.lineTo(footX+state.pivotOffset*.70,pivotY); ctx.stroke();
+    ctx.fillStyle=p.green; ctx.strokeStyle=p.panel; ctx.lineWidth=2;
+    roundRect(ctx,footX-state.footLength*.48,groundY-5,state.footLength*.96,6,3); ctx.fill(); ctx.stroke();
+    ctx.fillStyle=p.accent; ctx.beginPath(); ctx.arc(footX+state.pivotOffset*.70,pivotY,4,0,Math.PI*2); ctx.fill();
+  });
+
+  if (showMotion) {
+    ctx.setLineDash([4,5]); ctx.strokeStyle=p.blue; ctx.lineWidth=1.5;
+    ctx.beginPath();
+    for(let i=0;i<=30;i++){
+      const a=i/30*Math.PI*2;
+      const xx=center+state.baseLength*.29 + Math.cos(a)*m.stride*.38;
+      const yy=groundY-8 + Math.sin(a)*Math.max(3,state.crankRadius*.18);
+      if(i===0) ctx.moveTo(xx,yy); else ctx.lineTo(xx,yy);
+    }
+    ctx.stroke(); ctx.setLineDash([]);
+  }
+  ctx.restore();
+}
+
+let duel = {running:false, finished:false, pos:0, v:0, t:0, preset:'balanced', raf:0, countToken:0};
+const rivalMassEl = $('#rivalMass');
+const rivalMassOut = $('#rivalMassOut');
+const duelLog = $('#duelLog');
+
+function rivalModel() {
+  const preset = PRESETS[duel.preset] || PRESETS.balanced;
+  const s = {...DEFAULTS, ratio:preset.ratio, footMaterial:preset.material, footShape:'rect', linkMode:'x', couplerLength:123, xLinkLength:123, crankRadius:14, legLength:75, legAngle:0, pivotOffset:0, pivotHeight:'mid', footLength:100, footWidth:50, baseLength:240, baseWidth:100, gearX:0, gearY:0, batteryX:-40, batteryY:0};
+  const base = calculateModel(s);
+  const normalN = Number(rivalMassEl.value) * 9.81;
+  const mat = MATERIALS[preset.material];
+  const traction = normalN * mat.mu * SHAPES[s.footShape].contact;
+  const eff = Math.min(base.driveForce * .90, traction * .96) * clamp(.77 + base.cadence*.055,.76,1.04);
+  return {...base, mass:Number(rivalMassEl.value), normalN, traction, effectivePull:eff, presetLabel:preset.label};
+}
+
+function openDuel() {
+  updateAll();
+  duel.running = false; duel.finished = false; duel.pos = 0; duel.v = 0; duel.t = 0;
+  $('#duelOverlay').hidden = false;
+  document.body.style.overflow = 'hidden';
+  duelLog.innerHTML = '<div>請先設定對手重量，再開始拔河。</div>';
+  $('#resultPanel').classList.remove('show');
+  $('#countdown').textContent = '準備';
+  $('#ropePosition').textContent = '0 mm';
+  $('#playerTension').textContent = '0 N';
+  $('#rivalTension').textContent = '0 N';
+  setTimeout(() => $('#duelOverlay').scrollIntoView({block:'start'}), 80);
+}
+function closeDuel() {
+  duel.countToken++;
+  duel.running = false;
+  cancelAnimationFrame(duel.raf);
+  $('#duelOverlay').hidden = true;
+  document.body.style.overflow = '';
+}
+$('#duelCloseBtn').addEventListener('click', closeDuel);
+
+function logDuel(message) {
+  const div = document.createElement('div');
+  div.textContent = message;
+  duelLog.prepend(div);
+  while (duelLog.children.length > 8) duelLog.lastElementChild.remove();
+}
+
+function runCountdown() {
+  if (duel.running) return;
+  const token = ++duel.countToken;
+  const messages = ['3','2','1','拔河！'];
+  messages.forEach((text,i) => setTimeout(() => {
+    if (token !== duel.countToken) return;
+    $('#countdown').textContent = text;
+    if (i === messages.length-1) {
+      duel.running = true; duel.finished = false; duel.pos = 0; duel.v = 0; duel.t = 0;
+      $('#resultPanel').classList.remove('show');
+      const player = calculateModel(state), rival = rivalModel();
+      duelLog.innerHTML = '';
+      logDuel(`對手：${rival.presetLabel}，${rivalMassEl.value} kg。`);
+      logDuel(`我方預估可用拉力 ${fmt(player.effectivePull,1)} N；對手 ${fmt(rival.effectivePull,1)} N。`);
+    }
+  }, i*700));
+}
+
+function startDuel() {
+  duel.countToken++;
+  duel.running = false; duel.finished = false; duel.pos = 0; duel.v = 0;
+  runCountdown();
+}
+$('#startDuelBtn').addEventListener('click', startDuel);
+$('#retryDuelBtn').addEventListener('click', startDuel);
+
+$('#rivalMass').addEventListener('input', e => {
+  rivalMassOut.textContent = `${Number(e.target.value).toFixed(2)} kg`;
+  if (!duel.running) {
+    const r = rivalModel();
+    logDuel(`對手質量調至 ${Number(e.target.value).toFixed(2)} kg；摩擦上限約 ${fmt(r.traction,1)} N。`);
+  }
+});
+$$('.preset-btn').forEach(btn => btn.addEventListener('click', () => {
+  duel.preset = btn.dataset.preset;
+  $$('.preset-btn').forEach(x => x.classList.toggle('active', x === btn));
+  const p = PRESETS[duel.preset];
+  rivalMassEl.value = p.mass;
+  rivalMassOut.textContent = `${p.mass.toFixed(2)} kg`;
+  if (!duel.running) logDuel(`已選 ${p.label}：VR ${p.ratio}:1、${MATERIALS[p.material].label}。`);
+}));
+
+function stepDuel(dt) {
+  if (!duel.running || duel.finished) return;
+  duel.t += dt;
+  const p = calculateModel(state);
+  const r = rivalModel();
+  const cycleP = 1 + Math.sin(duel.t*p.cadence*Math.PI*2)*.16;
+  const cycleR = 1 + Math.sin(duel.t*r.cadence*Math.PI*2 + .8)*.16;
+  const playerPull = p.effectivePull * cycleP;
+  const rivalPull = r.effectivePull * cycleR;
+  const net = playerPull - rivalPull;
+  const totalMass = Math.max(.20,p.machineMass) + Math.max(.20,r.mass);
+  duel.v += (net / totalMass) * dt;
+  duel.v *= Math.pow(.30, dt);
+  duel.v = clamp(duel.v,-1.4,1.4);
+  duel.pos += duel.v * dt;
+  duel.pos = clamp(duel.pos,-.12,.12);
+
+  $('#ropePosition').textContent = `${duel.pos*1000 >= 0 ? '+' : ''}${fmt(duel.pos*1000,0)} mm`;
+  $('#playerTension').textContent = `${fmt(playerPull,1)} N`;
+  $('#rivalTension').textContent = `${fmt(rivalPull,1)} N`;
+
+  if (Math.abs(duel.pos) >= .075) finishDuel(duel.pos > 0 ? 'win' : 'lose', p, r);
+  else if (duel.t >= 12) finishDuel(duel.pos > .002 ? 'win' : duel.pos < -.002 ? 'lose' : 'draw', p, r);
+}
+
+function finishDuel(result,p,r) {
+  duel.running = false; duel.finished = true;
+  $('#countdown').textContent = result === 'win' ? '勝利' : result === 'lose' ? '落敗' : '平手';
+  const panel = $('#resultPanel');
+  panel.classList.add('show');
+  const title = $('#resultTitle'), text = $('#resultText');
+  if (result === 'win') {
+    title.textContent = '成功拉過 +75 mm！';
+    text.textContent = `我方 ${fmt(p.effectivePull,1)} N 對對手 ${fmt(r.effectivePull,1)} N。檢查是否靠較高 μ、適合的 VR 或更穩定的重心取勝。`;
+    logDuel('勝出：有效拉力壓過對手。可嘗試加重對手再測試設計極限。');
+  } else if (result === 'lose') {
+    title.textContent = '被拉過 −75 mm';
+    text.textContent = `對手摩擦上限約 ${fmt(r.traction,1)} N。提升腳底 μ、增加自己的有效拉力，或降低重心再試一次。`;
+    logDuel('落敗：先比較「可用拉力」與「摩擦上限」，找出哪一項是瓶頸。');
+  } else {
+    title.textContent = '12 秒內未能拉過 75 mm';
+    text.textContent = '雙方的有效拉力接近。可微調連桿接點、平衡齒輪速度比與抓地力。';
+    logDuel('平手：這是一個很好的公平測試，適合比較不同設計。');
+  }
+}
+
+
+function drawDuel() {
+  const c = $('#duelCanvas');
+  if (!c || $('#duelOverlay').hidden) return;
+  const {ctx,w,h} = fitCanvas(c,330);
+  const p = palette();
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle=p.floor; ctx.fillRect(0,0,w,h);
+  ctx.strokeStyle=p.grid; ctx.lineWidth=1;
+  for(let x=20;x<w;x+=32){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
+  for(let y=24;y<h;y+=32){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+
+  const centerX=w/2;
+  const winSpan=Math.min(w*.22,150);
+  const posPx=clamp(duel.pos/.075,-1.2,1.2)*winSpan;
+  const ropeY=Math.max(154,h*.58);
+  ctx.setLineDash([7,7]); ctx.strokeStyle=p.line; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(centerX,ropeY-78); ctx.lineTo(centerX,ropeY+70); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle=p.muted; ctx.font='700 11px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('中心 0',centerX,ropeY+90);
+  ctx.fillText('+75 mm',centerX+winSpan,ropeY+90);
+  ctx.fillText('−75 mm',centerX-winSpan,ropeY+90);
+  ctx.strokeStyle=p.red; ctx.setLineDash([4,5]);
+  ctx.beginPath(); ctx.moveTo(centerX+winSpan,ropeY-58); ctx.lineTo(centerX+winSpan,ropeY+56); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(centerX-winSpan,ropeY-58); ctx.lineTo(centerX-winSpan,ropeY+56); ctx.stroke();
+  ctx.setLineDash([]);
+
+  const player=calculateModel(state), rival=rivalModel();
+  const shift=posPx*.14;
+  const xL=Math.max(100,w*.22-shift), xR=Math.min(w-100,w*.78-shift);
+  drawDuelMachine(ctx,xL,ropeY,'left',p.accent,player.cadence,duel.t,'B1/C1',player.effectivePull);
+  drawDuelMachine(ctx,xR,ropeY,'right',p.blue,rival.cadence,duel.t+1.1,rival.presetLabel,rival.effectivePull);
+
+  const leftHook=xL+86, rightHook=xR-86, marker=centerX+posPx;
+  ctx.strokeStyle=p.gold; ctx.lineWidth=7; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(leftHook,ropeY); ctx.lineTo(rightHook,ropeY); ctx.stroke();
+  ctx.fillStyle=duel.finished ? (duel.pos>0?p.green:p.red) : p.accent;
+  ctx.beginPath(); ctx.arc(marker,ropeY,11,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle=p.panel; ctx.lineWidth=3; ctx.stroke();
+
+  if (duel.finished) {
+    ctx.fillStyle = duel.pos > 0 ? 'rgba(46,125,91,.18)' : 'rgba(174,61,61,.16)';
+    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle=p.ink; ctx.textAlign='center'; ctx.font='900 28px sans-serif';
+    ctx.fillText(duel.pos>=0?'我方勝利':'對方勝利',centerX,48);
+  }
+}
+
+function drawDuelMachine(ctx,cx,ropeY,side,color,cadence,time,label,tension) {
+  const p=palette();
+  const dir=side==='left'?1:-1;
+  const bodyY=ropeY-20;
+  ctx.save();
+  ctx.strokeStyle=color; ctx.fillStyle=color; ctx.lineWidth=6; ctx.lineCap='round';
+  const phase=time*cadence*Math.PI*2;
+  [-45,45].forEach(dx=>[-1,1].forEach(vy=>{
+    const legPhase=phase+(dx<0?0:Math.PI)+(vy>0?.35:0);
+    const footX=cx+dx+Math.cos(legPhase)*9*dir;
+    const footY=bodyY+52+vy*9+Math.sin(legPhase)*4;
+    ctx.beginPath(); ctx.moveTo(cx+dx*.72,bodyY+8); ctx.lineTo(footX,footY); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(footX-10,footY+2); ctx.lineTo(footX+13,footY+2); ctx.stroke();
+  }));
+  ctx.fillStyle=p.panel2; ctx.strokeStyle=color; ctx.lineWidth=3;
+  roundRect(ctx,cx-78,bodyY-24,156,50,12); ctx.fill(); ctx.stroke();
+  ctx.fillStyle=color; roundRect(ctx,cx-22,bodyY-12,44,28,6); ctx.fill();
+  ctx.fillStyle=p.gold; ctx.beginPath(); ctx.arc(cx,bodyY+23,9,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle=p.ink; ctx.font='800 12px sans-serif'; ctx.textAlign='center'; ctx.fillText(label,cx,bodyY+2);
+
+  ctx.strokeStyle=color; ctx.lineWidth=5;
+  ctx.beginPath(); ctx.moveTo(cx+78*dir,bodyY); ctx.lineTo(cx+86*dir,ropeY); ctx.stroke();
+  const arrowLen=42+Math.min(48,tension*12);
+  ctx.fillStyle=color; ctx.beginPath(); ctx.moveTo(cx+80*dir,bodyY-42); ctx.lineTo(cx+(80+arrowLen)*dir,bodyY-42); ctx.lineTo(cx+(80+arrowLen)*dir,bodyY-48); ctx.lineTo(cx+(92+arrowLen)*dir,bodyY-38); ctx.lineTo(cx+(80+arrowLen)*dir,bodyY-28); ctx.lineTo(cx+(80+arrowLen)*dir,bodyY-34); ctx.lineTo(cx+80*dir,bodyY-34); ctx.closePath(); ctx.fill();
+  ctx.font='700 11px sans-serif'; ctx.fillText(`${fmt(tension,1)} N`,cx+80*dir,bodyY-55);
+  ctx.restore();
+}
+
+let lastFrame=performance.now();
+function frame(now) {
+  const dt=Math.min(.05,Math.max(0,(now-lastFrame)/1000));
+  lastFrame=now;
+  animTime += dt * (showMotion ? 1 : .18);
+  drawCAD();
+  if (!$('#duelOverlay').hidden) {
+    stepDuel(dt);
+    drawDuel();
+  }
+  requestAnimationFrame(frame);
+}
+
+window.addEventListener('resize', () => { drawCAD(); if(!$('#duelOverlay').hidden) drawDuel(); });
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { drawCAD(); if(!$('#duelOverlay').hidden) drawDuel(); });
+
+syncUI();
+rivalMassOut.textContent = `${Number(rivalMassEl.value).toFixed(2)} kg`;
+updateAll();
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

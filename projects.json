@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-11-25T11:19:15+08:00",
+  "repository": "codex-project-hub",
+  "projects": [
+    {
+      "slug": "tug-of-war-simulator",
+      "title": "四足拔河模擬器",
+      "category": "模擬器",
+      "kind": "HTML",
+      "summary": "可離線開啟的四足拔河物理與互動模擬器，保留 v1–v16 版本以供比較修訂。"
+    },
+    {
+      "slug": "maintenance-report-tool",
+      "title": "維修工程統計報告產生器",
+      "category": "應用程式",
+      "kind": "Python",
+      "summary": "把維修申請表轉為季報／年報，輸出 Excel、Word、PDF 及圖表，內置分類與建議規則。"
+    },
+    {
+      "slug": "luma-quiz-studio",
+      "title": "知光 Luma 網上測驗卷工具",
+      "category": "應用程式",
+      "kind": "HTML + Apps Script",
+      "summary": "教師建立多題型測驗、學生即時作答與評分；可連接 Google Sheet，並支援 AI 出題。"
+    },
+    {
+      "slug": "robot-competition-system",
+      "title": "機械人奪寶奇兵比賽系統",
+      "category": "物聯網",
+      "kind": "ESP32 / Apps Script",
+      "summary": "RFID、ESP-NOW、網頁計時器、Google Sheet 與伺服控制整合的比賽系統；公開版已去除密碼、Token、部署網址及韌體二進位。"
+    },
+    {
+      "slug": "esp32-pressure-sensor",
+      "title": "ESP32-C3 座椅壓力感測器",
+      "category": "物聯網",
+      "kind": "Arduino",
+      "summary": "NH0003 座椅薄膜感測器的接線、判讀及 ESP32-C3 測試程式，附完整實測記錄。"
+    },
+    {
+      "slug": "competition-presentation",
+      "title": "2027 STEAM 機械人比賽簡介",
+      "category": "簡報",
+      "kind": "PowerPoint",
+      "summary": "比賽任務、規格、計分與備戰策略的 13 頁簡報，附粵語旁白稿及預覽圖。"
+    },
+    {
+      "slug": "celadon-vase",
+      "title": "青瓷迷你花瓶",
+      "category": "3D 資產",
+      "kind": "Blender",
+      "summary": "可編輯 Blender 青瓷花瓶模型及完成品預覽，適合作為渲染、材質或展示素材。"
+    },
+    {
+      "slug": "kys-steam-review",
+      "title": "KYS STEAM 課程檢視 Skill",
+      "category": "SKILL",
+      "kind": "Codex Skill",
+      "summary": "把多科 STEAM 活動計劃整理、去重、對照香港 EDB 優先方向，並產出可追溯的 Excel 檢視報告。"
+    }
+  ],
+  "sensitiveContentPolicy": {
+    "public": "No credentials, personal data, school-internal documents, teacher/student records, or private firmware binaries.",
+    "private": "See sibling directory codex-private-archive and keep it in a Private GitHub repository."
+  }
+}
