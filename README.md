@@ -34,12 +34,14 @@ powershell -ExecutionPolicy Bypass -File scripts/publish.ps1 -Message "Update pr
 
 ## 自動化
 
+Codex Automation「AT GitHub 每日同步」已啟用，每日 18:00 會：
+
+1. 同步私人封存並推送至 `AT-private-archive`。
+2. 檢查公開內容敏感資料，然後提交及推送至 `AT-project-hub`。
+3. GitHub Actions 自動重新部署 GitHub Pages。
+
+失敗時才會通知；手動執行可使用：
+
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts/install-scheduled-publish.ps1 -Time 18:10
+powershell -ExecutionPolicy Bypass -File scripts/publish.ps1 -Message "Update projects"
 ```
-
-排程只會提交並推送已放入本倉庫且已通過敏感掃描的內容。
-
-## 授權
-
-各項目可能使用不同授權。未附 `LICENSE` 的內容預設保留所有權利。
