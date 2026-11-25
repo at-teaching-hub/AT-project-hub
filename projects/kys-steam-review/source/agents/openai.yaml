@@ -1,4 +1,0 @@
-interface:
-  display_name: "KYS_STEAM_REVIEW"
-  short_description: "STEAM curriculum plan analysis and reporting"
-  default_prompt: "Analyze the supplied STEAM curriculum and activity plans; normalize records, build the review workbook, charts, and recommendations with KYS_STEAM_REVIEW."
